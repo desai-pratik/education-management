@@ -121,7 +121,7 @@ const AdminDashboard = () => {
                 ))
               ) : (
                 <tr className="text-center">
-                  <td colSpan="1" className="px-6 py-4">
+                  <td colSpan="3" className="px-6 py-4">
                     No students found!
                   </td>
                 </tr>
@@ -151,7 +151,7 @@ const AdminDashboard = () => {
                 ))
               ) : (
                 <tr className="text-center">
-                  <td colSpan="1" className="px-6 py-4">
+                  <td colSpan="3" className="px-6 py-4">
                     No teachers found!
                   </td>
                 </tr>
