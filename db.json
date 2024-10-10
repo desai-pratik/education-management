@@ -1,0 +1,51 @@
+{
+  "users": [
+    {
+      "id": "7324",
+      "username": "pratik",
+      "email": "pratik@gmail.com",
+      "password": "pratik",
+      "role": "admin"
+    },
+    {
+      "id": "39bd",
+      "username": "jeet",
+      "email": "jeet@gmail.com",
+      "password": "jeet",
+      "role": "teacher"
+    },
+    {
+      "id": "c545",
+      "username": "chintan",
+      "email": "chintan@gmail.com",
+      "password": "chintan",
+      "role": "student"
+    }
+  ],
+  "courses": [
+    {
+      "id": "6571",
+      "title": "Backend Developer",
+      "description": "This is a backend developer course",
+      "startDate": "2024-04-04",
+      "endDate": "2024-10-04",
+      "assignedTeacher": "jeet",
+      "enrolledStudents": [
+        "c545",
+        "",
+        "176e"
+      ]
+    },
+    {
+      "id": "1d83",
+      "title": "Frontend Developer",
+      "description": "This is a frontend developer course",
+      "startDate": "2024-05-04",
+      "endDate": "2024-11-04",
+      "assignedTeacher": "jeet",
+      "enrolledStudents": [
+        "c545"
+      ]
+    }
+  ]
+}
