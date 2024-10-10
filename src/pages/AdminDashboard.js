@@ -33,7 +33,7 @@ const AdminDashboard = () => {
     fetchData();
   }, []);
 
-  
+
 
   // const handleDeleteCourse = async (id) => {
   //   try {
@@ -105,14 +105,18 @@ const AdminDashboard = () => {
           <table className="min-w-full bg-white shadow rounded-lg overflow-hidden">
             <thead className="bg-gray-200">
               <tr>
+                <th className="text-left px-6 py-4">Student Id</th>
                 <th className="text-left px-6 py-4">Student Name</th>
+                <th className="text-left px-6 py-4">Student Email</th>
               </tr>
             </thead>
             <tbody>
               {students.length > 0 ? (
                 students.map((student) => (
                   <tr key={student.id} className="border-b hover:bg-gray-100">
+                    <td className="px-6 py-4">{student.id}</td>
                     <td className="px-6 py-4">{student.username}</td>
+                    <td className="px-6 py-4">{student.email}</td>
                   </tr>
                 ))
               ) : (
@@ -131,14 +135,18 @@ const AdminDashboard = () => {
           <table className="min-w-full bg-white shadow rounded-lg overflow-hidden">
             <thead className="bg-gray-200">
               <tr>
+                <th className="text-left px-6 py-4">Teacher Id</th>
                 <th className="text-left px-6 py-4">Teacher Name</th>
+                <th className="text-left px-6 py-4">Teacher Email</th>
               </tr>
             </thead>
             <tbody>
               {teachers.length > 0 ? (
                 teachers.map((teacher) => (
                   <tr key={teacher.id} className="border-b hover:bg-gray-100">
+                    <td className="px-6 py-4">{teacher.id}</td>
                     <td className="px-6 py-4">{teacher.username}</td>
+                    <td className="px-6 py-4">{teacher.email}</td>
                   </tr>
                 ))
               ) : (

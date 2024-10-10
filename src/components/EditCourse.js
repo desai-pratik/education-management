@@ -44,7 +44,11 @@ const EditCourse = () => {
       return;
     }
 
-    await axios.put(`http://localhost:5000/courses/${id}`, course);
+    // await axios.put(`http://localhost:5000/courses/${id}`, course);
+    const courses = JSON.parse(localStorage.getItem("courses")) || [];
+    const updatedCourses = courses.map(c => c.id === parseInt(id) ? { ...c, ...course } : c);
+    localStorage.setItem("courses", JSON.stringify(updatedCourses));
+    
     navigate("/admin");
     fetchData()
   };

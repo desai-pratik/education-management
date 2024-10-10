@@ -10,46 +10,41 @@ const TeachersCoursesCardDetails = () => {
   const { allStudents } = useOutletContext();
 
   useEffect(() => {
-    // const fetchCourseDetails = async () => {
-    //   try {
-    //     const response = await axios.get(`http://localhost:5000/courses/${id}`);
-    //     setCourse(response.data);
-    //     const enrolledStudentIds = response.data.enrolledStudents;
-    //     const studentsResponse = await axios.get("http://localhost:5000/users");
-    //     const enrolledStudents = studentsResponse.data.filter((student) => enrolledStudentIds.includes(student.id));
+    const fetchCourseDetails = async () => {
+      //   try {
+      //     const response = await axios.get(`http://localhost:5000/courses/${id}`);
+      //     setCourse(response.data);
+      //     const enrolledStudentIds = response.data.enrolledStudents;
+      //     const studentsResponse = await axios.get("http://localhost:5000/users");
+      //     const enrolledStudents = studentsResponse.data.filter((student) => enrolledStudentIds.includes(student.id));
 
-    //     setStudents(enrolledStudents);
-    //   } catch (error) {
-    //     console.error("Error fetching course details:", error);
-    //   }
-    // };
-    const fetchCourseDetails = () => {
+      //     setStudents(enrolledStudents);
+      //   } catch (error) {
+      //     console.error("Error fetching course details:", error);
+      //   }
+
       const courses = JSON.parse(localStorage.getItem("courses")) || [];
       const foundCourse = courses.find((course) => course.id === Number(id));
-      setCourse(foundCourse);
-      const enrolledStudentIds = foundCourse?.enrolledStudents || [];
-      const enrolledStudents = allStudents.filter((student) => enrolledStudentIds.includes(student.id));
-      setStudents(enrolledStudents);
+      if (foundCourse) {
+        setCourse(foundCourse);
+        const enrolledStudentIds = foundCourse.enrolledStudents || [];
+        const enrolledStudents = allStudents.filter((student) => enrolledStudentIds.includes(student.id));
+        setStudents(enrolledStudents);
+      }
     };
 
     fetchCourseDetails();
-  }, [id]);
+  }, [id, allStudents]);
 
   const handleAddStudent = async () => {
-    if (course.enrolledStudents.includes(addStudent)) {
-      return;
-    }
+    // if (course.enrolledStudents.includes(addStudent)) {
+    //   return;
+    // }
 
-    const updatedCourse = {
-      ...course,
-      enrolledStudents: [...course.enrolledStudents, addStudent],
-    };
-
-    const courses = JSON.parse(localStorage.getItem("courses")) || [];
-    const updatedCourses = courses.map((c) => (c.id === course.id ? updatedCourse : c));
-    localStorage.setItem("courses", JSON.stringify(updatedCourses));
-    alert(`Student added to ${course.title} course!`);
-    setStudents([...students, allStudents.find((student) => student.id === addStudent)]);
+    //   const updatedCourse = {
+    //   ...course,
+    //   enrolledStudents: [...course.enrolledStudents, addStudent],
+    // };
     // try {
     //   const updatedCourse = {
     //     ...course,
@@ -60,6 +55,30 @@ const TeachersCoursesCardDetails = () => {
     // } catch (error) {
     //   console.error("Error adding student to course:", error);
     // }
+
+    const studentToAdd = allStudents.find((student) => student.id === Number(addStudent));
+
+    if (!studentToAdd) {
+      alert("Student not found. Please select a valid student.");
+      return;
+    }
+
+    if (course.enrolledStudents.includes(studentToAdd.id)) {
+      alert("Student is already enrolled in the course.");
+      return;
+    }
+
+    const updatedCourse = {
+      ...course,
+      enrolledStudents: [...course.enrolledStudents, studentToAdd.id],
+    };
+
+    const courses = JSON.parse(localStorage.getItem("courses")) || [];
+    const updatedCourses = courses.map((c) => (c.id === course.id ? updatedCourse : c));
+    localStorage.setItem("courses", JSON.stringify(updatedCourses));
+    alert(`Student ${studentToAdd.username} added to ${course.title} course!`);
+
+    setStudents([...students, studentToAdd]);
   };
 
   return (
