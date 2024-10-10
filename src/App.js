@@ -35,7 +35,7 @@ function App() {
           <Route path="details/:id" element={<StudentCoursesCardDetails />} />
         </Route>
 
-        <Route path="/" element={<div>Home</div>} />
+        <Route path="/" element={<Login />} />
       </Routes>
     </AuthProvider>
   );
